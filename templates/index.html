@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Review Sentiment Analysis</title>
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+           background-color: #333;
+            background-image: url('/bank_bg.jpg');
+            color: #fff;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #212529;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+        }
+
+        .navbar-brand {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .navbar-brand:hover {
+            color: #fff;
+        }
+
+        h1 {
+            color: #fff;
+            text-align: center;
+        }
+
+        .form-container {
+            background-color: #424242;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .form-control {
+            border: 1px solid #636363;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .star-rating {
+            color: #ffc107;
+            font-size: 2em;
+        }
+
+        .alert {
+            background-color: #dc3545;
+            color: #fff;
+            border-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Bank Review Sentimental Analysis Project</a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 form-container">
+                <h1 class="mb-4" style="font-size: 1.6rem;">Bank Review Sentiment Analysis</h1>
+                <form method="POST" action="/predict">
+                    <div class="form-group">
+                        <label for="review">Enter your review:</label>
+                        <textarea class="form-control" id="review" name="review" rows="4" placeholder="Type your review here"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </form>
+
+                {% if error_message %}
+                    <div class="alert mt-3" role="alert">
+                        {{ error_message }}
+                    </div>
+                {% endif %}
+
+                {% if star_prediction %}
+                    <div class="mt-4">
+                        <p>Your predicted star rating: <span class="star-rating">{{ '⭐' * star_prediction }}</span></p>
+                        <p>Sentiment: {{ sentiment_prediction }}</p>
+                        <p>You entered: {{ user_input }}</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Include Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
